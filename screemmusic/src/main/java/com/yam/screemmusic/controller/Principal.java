@@ -1,17 +1,24 @@
 package com.yam.screemmusic.controller;
 
 import com.yam.screemmusic.entity.Artist;
+import com.yam.screemmusic.entity.Music;
 import com.yam.screemmusic.repository.ArtistRepository;
+import com.yam.screemmusic.repository.MusicRepository;
 import com.yam.screemmusic.service.ArtistService;
+import com.yam.screemmusic.service.MusicService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
     Scanner scanner = new Scanner(System.in);
 
-    private ArtistRepository repository;
+    private ArtistRepository artistRepository;
+    private MusicRepository musicRepository;
 
-    ArtistService artistService = new ArtistService(repository);
+    MusicService musicService = new MusicService(musicRepository);
+    ArtistService artistService = new ArtistService(artistRepository);
 
     public void showMenu() {
         var option = -1;
@@ -65,10 +72,21 @@ public class Principal {
         artist.setName(nameArtist);
         artist.setType(typeArtist);
         artistService.registerArtist(artist);
-        System.out.println();
     }
 
     private void registerMusic() {
         System.out.println("Digite o nome da musica que quer cadastrar");
+        var nameMusic = scanner.nextLine();
+        System.out.println("Digite o gênero da musica");
+        var typeMusic = scanner.nextLine();
+        Music music = new Music();
+        music.setNameMusic(nameMusic);
+        music.setCategory(typeMusic);
+        musicService.registerMusic(music);
+    }
+
+    private void listMusic() {
+        List<Music> musics = musicService.getAllMusic();
+        musics.forEach(System.out::println);
     }
 }
