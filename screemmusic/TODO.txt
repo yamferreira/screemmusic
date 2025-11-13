@@ -1,0 +1,11 @@
+[] Cadastrar artista
+    - Informe o nome do artista
+    - Informe o tipo desse artista: (solo,dupla,banda)
+    - Cadastrar outro artista? S/N
+[] Cadastrar musica
+[] Listar musica
+[] Buscar musica por artista
+[] Prsquisar dados sobre um artista
+[]
+
+[]
